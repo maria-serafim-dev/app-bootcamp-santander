@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">AppBootcampSantander</string>
+    <string name="txt_cd_simulate">Botão de simulação de partidas</string>
+    <string name="txt_cd_home_team">Imagem do time mandante</string>
+    <string name="txt_cd_away_team">Imagem do time visitante</string>
+    <string name="text_versus">X</string>
 </resources>
