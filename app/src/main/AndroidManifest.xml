@@ -10,12 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppBootcampSantander">
         <activity
-            android:name=".DetailActivity"
+            android:name=".ui.DetailActivity"
             android:exported="true"
             android:theme="@style/Theme.Simulator.NoActionBar">
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

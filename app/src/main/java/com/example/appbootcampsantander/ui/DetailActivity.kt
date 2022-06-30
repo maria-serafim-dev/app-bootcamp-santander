@@ -1,4 +1,4 @@
-package com.example.appbootcampsantander
+package com.example.appbootcampsantander.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
