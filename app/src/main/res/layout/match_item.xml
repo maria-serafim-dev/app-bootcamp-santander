@@ -61,15 +61,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            app:layout_constraintBottom_toBottomOf="@id/ivAway"
-            app:layout_constraintEnd_toStartOf="@id/ivAway"
+            app:layout_constraintBottom_toBottomOf="@id/ivAwayTeam"
+            app:layout_constraintEnd_toStartOf="@id/ivAwayTeam"
             app:layout_constraintStart_toEndOf="@+id/tvVersus"
-            app:layout_constraintTop_toTopOf="@id/ivAway"
+            app:layout_constraintTop_toTopOf="@id/ivAwayTeam"
             tools:text="2" />
 
 
         <ImageView
-            android:id="@+id/ivAway"
+            android:id="@+id/ivAwayTeam"
             android:layout_width="@dimen/team_image_size"
             android:layout_height="@dimen/team_image_size"
             android:layout_marginTop="@dimen/margin_default"
@@ -86,9 +86,9 @@
             android:layout_marginTop="@dimen/margin_default"
             android:layout_marginBottom="@dimen/margin_default"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/ivAway"
-            app:layout_constraintStart_toStartOf="@id/ivAway"
-            app:layout_constraintTop_toBottomOf="@id/ivAway"
+            app:layout_constraintEnd_toEndOf="@id/ivAwayTeam"
+            app:layout_constraintStart_toStartOf="@id/ivAwayTeam"
+            app:layout_constraintTop_toBottomOf="@id/ivAwayTeam"
             tools:text="Away Team" />
 
 
