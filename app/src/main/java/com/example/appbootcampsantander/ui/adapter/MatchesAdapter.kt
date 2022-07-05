@@ -26,13 +26,19 @@ class MatchesAdapter(private val matches: List<Match>) : RecyclerView.Adapter<Ma
 
         Glide.with(holder.itemView.context).load(match.homeTeam.image).circleCrop().into(holder.binding.ivHomeTeam)
         holder.binding.tvHomeTeamName.text = match.homeTeam.name
+        holder.binding.tvHomeTeamScore.text = match.homeTeam.score.toString()
 
         Glide.with(holder.itemView.context).load(match.awayTeam.image).circleCrop().into(holder.binding.ivAwayTeam)
         holder.binding.tvAwayTeamName.text = match.awayTeam.name
+        holder.binding.tvAwayTeamScore.text = match.awayTeam.score.toString()
 
     }
 
     override fun getItemCount(): Int {
         return matches.size
+    }
+
+    fun getMathches(): List<Match>{
+        return matches
     }
 }

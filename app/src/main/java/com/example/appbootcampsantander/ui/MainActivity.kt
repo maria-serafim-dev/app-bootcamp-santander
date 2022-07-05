@@ -16,6 +16,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
 
@@ -65,7 +66,12 @@ class MainActivity : AppCompatActivity() {
             it.animate().rotationBy(360F).setDuration(500).setListener(object : AnimatorListenerAdapter(){
 
                 override fun onAnimationEnd(animation: Animator?) {
-                    //TODO Implementar o algoritmo de simulação de partidas
+
+                   matchAdapter.getMathches().forEachIndexed { index, match ->
+                       match.homeTeam.score = Random.nextInt(match.homeTeam.start + 1)
+                       match.awayTeam.score = Random.nextInt(match.awayTeam.start + 1)
+                       matchAdapter.notifyItemChanged(index)
+                   }
                 }
             })
         }
