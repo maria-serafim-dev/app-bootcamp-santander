@@ -45,16 +45,36 @@ class MainActivity : AppCompatActivity() {
         binding.rvMatches.setHasFixedSize(true)
         binding.rvMatches.layoutManager = LinearLayoutManager(this)
 
-        matchesApi.getMatches().enqueue(object : Callback<List<Match>>{
+        findMatchesFromApi()
+
+    }
+
+
+    private fun showErrorMessage() {
+        Snackbar.make(binding.fabSimulate, R.string.error_api, Snackbar.LENGTH_LONG).show()
+    }
+
+    private fun setupMatchesRefresh() {
+        binding.srlMatches.setOnRefreshListener (this::findMatchesFromApi)
+    }
+
+    private fun setupFloatingActionButton() {
+        //TODO Criar evento de click e simulação de partidas
+    }
+
+    private fun findMatchesFromApi() {
+        binding.srlMatches.isRefreshing = true
+        matchesApi.getMatches().enqueue(object : Callback<List<Match>> {
             override fun onResponse(call: Call<List<Match>>, response: Response<List<Match>>) {
-                if(response.isSuccessful){
-                    val matches : List<Match>? = response.body()
+                if (response.isSuccessful) {
+                    val matches: List<Match>? = response.body()
                     matchAdapter = matches?.let { MatchesAdapter(it) }!!
                     binding.rvMatches.adapter = matchAdapter
-
-                }else{
+                } else {
                     showErrorMessage()
                 }
+
+                binding.srlMatches.isRefreshing = false
             }
 
             override fun onFailure(call: Call<List<Match>>, t: Throwable) {
@@ -62,19 +82,8 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
-
     }
 
-    private fun showErrorMessage() {
-        Snackbar.make(binding.fabSimulate, R.string.error_api, Snackbar.LENGTH_LONG).show()
-    }
 
-    private fun setupMatchesRefresh() {
-        //TODO Atualizar as partidas na ação de swipe
-    }
-
-    private fun setupFloatingActionButton() {
-        //TODO Criar evento de click e simulação de partidas
-    }
 
 }
