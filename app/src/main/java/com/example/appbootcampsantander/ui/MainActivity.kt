@@ -1,5 +1,7 @@
 package com.example.appbootcampsantander.ui
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -59,7 +61,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupFloatingActionButton() {
-        //TODO Criar evento de click e simulação de partidas
+        binding.fabSimulate.setOnClickListener {
+            it.animate().rotationBy(360F).setDuration(500).setListener(object : AnimatorListenerAdapter(){
+
+                override fun onAnimationEnd(animation: Animator?) {
+                    //TODO Implementar o algoritmo de simulação de partidas
+                }
+            })
+        }
+
     }
 
     private fun findMatchesFromApi() {
