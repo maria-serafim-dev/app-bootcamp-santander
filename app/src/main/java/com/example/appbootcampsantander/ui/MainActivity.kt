@@ -49,7 +49,6 @@ class MainActivity : AppCompatActivity() {
         binding.rvMatches.layoutManager = LinearLayoutManager(this)
 
         findMatchesFromApi()
-
     }
 
 
@@ -66,16 +65,18 @@ class MainActivity : AppCompatActivity() {
             it.animate().rotationBy(360F).setDuration(500).setListener(object : AnimatorListenerAdapter(){
 
                 override fun onAnimationEnd(animation: Animator?) {
-
-                   matchAdapter.getMathches().forEachIndexed { index, match ->
-                       match.homeTeam.score = Random.nextInt(match.homeTeam.start + 1)
-                       match.awayTeam.score = Random.nextInt(match.awayTeam.start + 1)
-                       matchAdapter.notifyItemChanged(index)
-                   }
+                    setupScoreMatches()
                 }
             })
         }
+    }
 
+    private fun setupScoreMatches() {
+        matchAdapter.getMatches().forEachIndexed { index, match ->
+            match.homeTeam.score = Random.nextInt(match.homeTeam.start + 1)
+            match.awayTeam.score = Random.nextInt(match.awayTeam.start + 1)
+            matchAdapter.notifyItemChanged(index)
+        }
     }
 
     private fun findMatchesFromApi() {
@@ -96,10 +97,6 @@ class MainActivity : AppCompatActivity() {
             override fun onFailure(call: Call<List<Match>>, t: Throwable) {
                 showErrorMessage()
             }
-
         })
     }
-
-
-
 }

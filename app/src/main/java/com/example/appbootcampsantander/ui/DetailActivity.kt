@@ -27,21 +27,44 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun loadMatchFromExtra() {
-        intent?.extras?.getParcelable<Match>(Extras.MATCH)?.let{
-            Glide.with(this).load(it.place.image).into(binding.ivPlace)
-            supportActionBar?.title = it.place.name
-
-            binding.tvDescription.text = it.description
-            Glide.with(this).load(it.homeTeam.image).into(binding.ivHomeTeam)
-            binding.tvHomeTeamName.text = it.homeTeam.name
-            binding.tvHomeTeamScore.text = it.homeTeam.score.toString()
-            binding.rbHomeTeamStars.rating = it.homeTeam.start.toFloat()
-
-            Glide.with(this).load(it.awayTeam.image).into(binding.ivAwayTeam)
-            binding.tvAwayTeamName.text = it.awayTeam.name
-            binding.tvAwayTeamScore.text = it.awayTeam.score.toString()
-            binding.rbAwayTeamStars.rating = it.awayTeam.start.toFloat()
+        intent?.extras?.getParcelable<Match>(Extras.MATCH)?.let {
+            setupLayoutWithDataPlace(it)
+            setupLayoutWithDataDescription(it)
+            setupLayoutWithDataTeamHome(it)
+            setupLayoutWithDataTeamAway(it)
         }
+    }
+
+    private fun setupLayoutWithDataDescription(match: Match) {
+        binding.tvDescription.text = match.description
+    }
+
+    private fun setupLayoutWithDataPlace(match: Match) {
+        Glide.with(this).load(match.place.image).into(binding.ivPlace)
+        supportActionBar?.title = match.place.name
+    }
+
+    private fun setupLayoutWithDataTeamHome(match: Match) {
+        with(binding) {
+            with(match) {
+                Glide.with(applicationContext).load(homeTeam.image).into(ivHomeTeam)
+                tvHomeTeamName.text = homeTeam.name
+                tvHomeTeamScore.text = homeTeam.score.toString()
+                rbHomeTeamStars.rating = homeTeam.start.toFloat()
+            }
+        }
+    }
+
+    private fun setupLayoutWithDataTeamAway(match: Match) {
+        with(binding) {
+            with(match) {
+                Glide.with(applicationContext).load(awayTeam.image).into(ivAwayTeam)
+                tvAwayTeamName.text = awayTeam.name
+                tvAwayTeamScore.text = awayTeam.score.toString()
+                rbAwayTeamStars.rating = awayTeam.start.toFloat()
+            }
+        }
+
     }
 
 }
