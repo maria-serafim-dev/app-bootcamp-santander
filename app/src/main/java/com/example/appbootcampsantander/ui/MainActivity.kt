@@ -16,11 +16,12 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.*
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var matchAdapter: MatchesAdapter
+    private var matchAdapter: MatchesAdapter = MatchesAdapter(Collections.emptyList())
     private lateinit var matchesApi: MatchesApi
     private lateinit var binding : ActivityMainBinding
 
@@ -47,7 +48,7 @@ class MainActivity : AppCompatActivity() {
     private fun setupMatchesList() {
         binding.rvMatches.setHasFixedSize(true)
         binding.rvMatches.layoutManager = LinearLayoutManager(this)
-
+        binding.rvMatches.adapter = matchAdapter
         findMatchesFromApi()
     }
 
@@ -96,6 +97,7 @@ class MainActivity : AppCompatActivity() {
 
             override fun onFailure(call: Call<List<Match>>, t: Throwable) {
                 showErrorMessage()
+                binding.srlMatches.isRefreshing = false
             }
         })
     }
